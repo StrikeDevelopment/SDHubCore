@@ -1,27 +1,21 @@
 <?php
 /*
 *
-*  _____                 _            _             
-* |_   _|               | |          | |            
-*   | |  _ __ ___  _ __ | | __ _  ___| |_ ___  _ __ 
-*   | | | '_ ` _ \| '_ \| |/ _` |/ __| __/ _ \| '__|
-*  _| |_| | | | | | |_) | | (_| | (__| || (_) | |   
-* |_____|_| |_| |_| .__/|_|\__,_|\___|\__\___/|_|   
-*                 | |                               
-*                 |_|                               
+* StrikeDevelopment Customs                              
+* - SDHubCore
 *
-* Implactor (1.4.x | 1.5.x)
+* SDHubCore (1.4.x | 1.5.x)
 * A plugin with some features for Minecraft: Bedrock!
 * --- = ---
 *
-* Team: ImpladeDeveloped
-* 2018 (c) Zadezter
+* Team: StrikeDevelopment
+* 2018 (c) xXCaulDevsYT
 *
 */
 
 declare(strict_types=1);
 
-namespace Implactor;
+namespace SDHubCore;
 
 use pocketmine\Player;
 use pocketmine\level\Level;
@@ -51,13 +45,13 @@ use Implactor\particles\DeathParticle;
 class MainIR extends PluginBase implements Listener {
 	
   public function onEnable(): void{
-  	$this->getLogger()->info(IR::GREEN . "Implactor plugin is now online!");
+  	$this->getLogger()->info(IR::GREEN . "SDHubCore plugin is now online!");
          $this->getServer()->getScheduler()->scheduleRepeatingTask(new HubParticle($this, $this), 20);
          $this->getServer()->getPluginManager()->registerEvents($this, $this);
        }
   
          public function onDisable(): void{
-          $this->getLogger()->info(IR::RED . "Implactor plugin is now offline!");
+          $this->getLogger()->info(IR::RED . "SDHubCore plugin is now offline!");
           $this->getServer()->shutdown();
         }
   
@@ -98,7 +92,7 @@ class MainIR extends PluginBase implements Listener {
   
                       public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
                       if(strtolower($command->getName()) == "hub") {
-                       if($sender->hasPermission("implactor.hub")) {
+                       if($sender->hasPermission("sd.hub")) {
                           $pos = $sender->getLevel()->getSpawnLocation();
                           $sender->teleport($pos);
                           $sender->addTitle("§7§l[§eHUB§7]§r", "§aReturning§f...");
@@ -108,7 +102,7 @@ class MainIR extends PluginBase implements Listener {
                  }
                  
                        if(strtolower($command->getName()) == "sethub") {
-                       	if($sender->hasPermission("implactor.sethub")) {
+                       	if($sender->hasPermission("sd.sethub")) {
                        	   if($sender->isOp()){
                        	  $sender->getLevel()->setSpawnLocation($sender);
                              $sender->getServer()->setDefaultLevel($sender->getLevel());
@@ -119,7 +113,7 @@ class MainIR extends PluginBase implements Listener {
                    }
                         
                         if(strtolower($command->getName()) == "fly") {
-                       	if($sender->hasPermission("implactor.fly")) {
+                       	if($sender->hasPermission("sd.fly")) {
                        	   if($sender->isOp()){
                                 if(!$sender->getAllowFlight()){
                                  $sender->setAllowFlight(true);
@@ -138,7 +132,7 @@ class MainIR extends PluginBase implements Listener {
                             }
 			      
                            if(strtolower($command->getName()) == "gmc") {
-                       	if($sender->hasPermission("implactor.gamemode")) {
+                       	if($sender->hasPermission("sd.gamemode")) {
                        	   if($sender->isOp()){
                        	   $sender->setGamemode(Player::CREATIVE);
                            $sender->sendMessage("§eChanged your gamemode to §bCreative!");
@@ -148,7 +142,7 @@ class MainIR extends PluginBase implements Listener {
                    }
                      
                            if(strtolower($command->getName()) == "gms") {
-                       	if($sender->hasPermission("implactor.gamemode")) {
+                       	if($sender->hasPermission("sd.gamemode")) {
                        	   if($sender->isOp()){
                               $sender->setGamemode(Player::SURVIVAL); 
                               $sender->sendMessage("§eChanged your gamemode to §bSurvival!");
@@ -157,7 +151,7 @@ class MainIR extends PluginBase implements Listener {
                      }
                    }
                            if(strtolower($command->getName()) == "gma") {
-                       	if($sender->hasPermission("implactor.gamemode")) {
+                       	if($sender->hasPermission("sd.gamemode")) {
                        	   if($sender->isOp()){
                        	   $sender->setGamemode(Player::ADVENTURE);
                            $sender->sendMessage("§eChanged your gamemode to §bAdventure!");
@@ -167,7 +161,7 @@ class MainIR extends PluginBase implements Listener {
                     }
                        
                            if(strtolower($command->getName()) == "gmspc") {
-                       	if($sender->hasPermission("implactor.gamemode")) {
+                       	if($sender->hasPermission("sd.gamemode")) {
                        	   if($sender->isOp()){
                               $sender->setGamemode(Player::SPECTATOR);
                               $sender->sendMessage("§eChanged your gamemode to §bSpectator!");
